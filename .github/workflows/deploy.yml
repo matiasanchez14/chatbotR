@@ -1,0 +1,17 @@
+name: Deploy n8n Workflow
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    if: "${{ secrets.N8N_PERSONAL_API_KEY != '' }}"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up .env
+        run: echo "N8N_PERSONAL_API_KEY=${{ secrets.N8N_PERSONAL_API_KEY }}" > .env
+      - name: Deploy workflow
+        run: npm run n8n:import
+
