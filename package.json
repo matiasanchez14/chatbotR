@@ -1,0 +1,8 @@
+{
+  "name": "chatbotr",
+  "version": "1.0.0",
+  "scripts": {
+    "n8n:import": "bash scripts/deploy_workflow.sh import",
+    "n8n:export": "bash scripts/deploy_workflow.sh export"
+  }
+}

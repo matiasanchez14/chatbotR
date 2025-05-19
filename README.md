@@ -37,3 +37,12 @@ Los puntos finales disponibles son:
 
 Cada respuesta es un JSON apto para ser consumido por ChatGPT u otro frontend.
 
+
+## Deploy del Chatbot con n8n
+
+1. En n8n, cree las credenciales **"Meta API"** de tipo *Header Auth* (cabecera `Authorization` con valor `Bearer <tu_token>`) y **"OpenAI API"** de tipo *Header Auth* (cabecera `Authorization` con valor `Bearer <tu_api_key>`).
+2. Importe el archivo `n8n/chatbot_whatsapp_ranwey.json` desde la interfaz de n8n mediante la opci\u00f3n *Import from file*.
+3. Configure en Facebook Developers la URL del webhook que indica el nodo *Webhook* del flujo (por ejemplo `https://<tu_n8n>/webhook/whatsapp`) para WhatsApp, Facebook e Instagram.
+4. Dentro del workflow ubique la variable `whatsapp:+YOUR_WHATSAPP_NUMBER` y reempl\u00e1cela por su n\u00famero verificado de Meta.
+
+El repositorio incluye el script `scripts/deploy_workflow.sh` para importar o exportar el flujo v\u00eda API. Use `npm run n8n:import` o `npm run n8n:export` seg\u00fan corresponda.
