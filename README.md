@@ -1,21 +1,21 @@
 # chatbotR
 
-Ejemplo de chatbot en Python que se conecta con WooCommerce utilizando su API REST. Permite consultar productos, pedidos y crear nuevas órdenes desde una interfaz de línea de comandos.
+Ejemplo de integraci\u00f3n con WooCommerce pensado para ser utilizado por ChatGPT u otras aplicaciones que consuman una API. Permite buscar productos, consultar pedidos y crear nuevas \u00f3rdenes.
 
 ## Requisitos
 
 - Python 3.8 o superior
 - Dependencias listadas en `requirements.txt`
 
-Instalación de dependencias:
+Instalaci\u00f3n de dependencias:
 
 ```bash
 pip install -r requirements.txt
 ```
 
-## Configuración
+## Configuraci\u00f3n
 
-Antes de ejecutar el chatbot, defina las siguientes variables de entorno con las credenciales de su tienda WooCommerce:
+Defina las siguientes variables de entorno con las credenciales de su tienda WooCommerce:
 
 - `WC_URL` – URL base de la tienda (por ejemplo `https://mitienda.com`)
 - `WC_CK` – Consumer Key
@@ -23,18 +23,17 @@ Antes de ejecutar el chatbot, defina las siguientes variables de entorno con las
 
 ## Uso
 
-Ejecute el script `chatbot.py`:
+Inicie la API con `uvicorn`:
 
 ```bash
-python chatbot.py
+uvicorn app:app --reload
 ```
 
-El programa iniciará un pequeño chat en consola donde podrá solicitar:
+Los puntos finales disponibles son:
 
-- Listar productos escribiendo alguna frase que contenga "producto".
-- Consultar pedidos existentes escribiendo algo que contenga "pedido".
-- Crear un nuevo pedido escribiendo "comprar" o "nuevo pedido"; el bot pedirá el identificador del producto y la cantidad.
+- `GET /products` para buscar productos por `search`, `product_id` o `category`.
+- `GET /orders` para obtener pedidos filtrando por `user_id` o `order_id`.
+- `POST /create_order` para crear un pedido nuevo enviando un JSON con los datos.
 
-Escriba `salir` para terminar la conversación.
+Cada respuesta es un JSON apto para ser consumido por ChatGPT u otro frontend.
 
-Este ejemplo es una base simple que puede ampliarse para integrarse en otras plataformas de chat o incorporar más lógica conversacional.
